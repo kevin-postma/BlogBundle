@@ -1,0 +1,37 @@
+{
+    "name": "kevinpostma/blog-bundle",
+    "type": "symfony-bundle",
+    "description": "Blog bundle for ecommerce applications.",
+    "keywords": ["blog", "blogs", "symfony2", "kevinpostma"],
+    "homepage": "https://github.com/kevinpostma/BlogBundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Kevin Postma",
+            "email": "info@kpict.nl",
+            "homepage": "http://kevinpostma.nl"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.3.3",
+        "symfony/framework-bundle":        "~2.3"
+    },
+    "require-dev": {
+        "phpspec/phpspec":    "2.0.*@dev",
+        "doctrine/orm":       "~2.2",
+        "symfony/form":       "~2.3"
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "autoload": {
+        "psr-0": { "Kp\\Bundle\\BlogBundle": "" }
+    },
+    "target-dir": "Kp/Bundle/BlogBundle",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1.x-dev"
+        }
+    }
+}
