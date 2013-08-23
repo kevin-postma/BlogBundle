@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                  http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    
+
+    <entity name="Kp\Bundle\BlogBundle\Entity\Blog" table="kp_blog">
+        
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO"/>
+            <sequence-generator sequence-name="tablename_seq" allocation-size="100" initial-value="1" />
+        </id>
+        
+        <field name="active" type="boolean" />
+        
+        <many-to-one field="author" target-entity="Kp\CoreBundle\Model\User" />
+        
+        <field name="createdAt" type="datetime" />
+        
+        <field name="updatedAt" type="datetime" />
+        
+        <many-to-many field="taxons" target-entity="Sylius\Bundle\TaxonomiesBundle\Model\TaxonInterface">
+            <join-table name="kp_blog_taxon">
+                <join-columns>
+                    <join-column name="blog_id" referenced-column-name="id" nullable="false" />
+                </join-columns>
+                <inverse-join-columns>
+                    <join-column name="taxon_id" referenced-column-name="id" nullable="false" />
+                </inverse-join-columns>
+            </join-table>
+        </many-to-many>
+        
+        <field name="title" type="string" />
+        
+        <field name="blog" type="text" />
+        
+    </entity>
+
+</doctrine-mapping>

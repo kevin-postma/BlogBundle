@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services
+                               http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="kp.model.blog.class">Kp\Bundle\BlogBundle\Entity\Blog</parameter>
+
+        <parameter key="kp.repository.blog.class">Kp\Bundle\BlogBundle\Repository\BlogRepository</parameter>
+    </parameters>
+
+    <services>
+        <service id="kp.manager.blog" alias="doctrine.orm.entity_manager" />
+        <service id="kp.repository.blog" class="%kp.repository.blog.class%">
+            <argument type="service" id="kp.manager.blog" />
+            <argument type="service">
+                <service
+                    factory-service="kp.manager.blog"
+                    factory-method="getClassMetadata"
+                    class="Doctrine\ORM\Mapping\ClassMetadata"
+                >
+                    <argument>%kp.model.blog.class%</argument>
+                </service>
+            </argument>
+        </service>
+    </services>
+</container>
